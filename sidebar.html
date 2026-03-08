@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noter</title>
+    <link rel="stylesheet" href="sidebar.css">
+</head>
+<body>
+    <div class="sidebar-container">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <h1 class="app-title">Noter</h1>
+            <button id="quickNoteBtn" class="quick-note-btn" title="Quick Note">+ Quick Note</button>
+        </nav>
+        
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <button class="category-chip active" data-category="all">All</button>
+            <div id="categoryChips"></div>
+            <button id="manageCategoriesBtn" class="manage-categories-btn" title="Manage Categories">⚙️</button>
+        </div>
+        
+        <!-- Main Content: Highlights List -->
+        <main class="main-content">
+            <div id="highlightsList" class="highlights-list">
+                <p class="empty-message">No notes yet. Select text on any webpage and click "Save"!</p>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>💡 Scrolling works with Key Points Only</p>
+        </footer>
+        
+        <!-- Quick Note Modal (Hidden) -->
+        <div id="quickNoteModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Quick Note</h3>
+                    <button id="closeModalBtn" class="close-btn">&times;</button>
+                </div>
+                <textarea id="quickNoteText" placeholder="Write your note here..."></textarea>
+                <div class="modal-footer">
+                    <button id="saveQuickNoteBtn" class="save-btn">Save</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Category Management Modal -->
+        <div id="categoryModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Manage Categories</h3>
+                    <button id="closeCategoryModalBtn" class="close-btn">&times;</button>
+                </div>
+                <div class="category-list" id="categoryList"></div>
+                <div class="add-category">
+                    <input type="text" id="newCategoryName" placeholder="Category name...">
+                    <input type="color" id="newCategoryColor" value="#667eea">
+                    <button id="addCategoryBtn">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="sidebar.js"></script>
+</body>
+</html>
+    </div>
+    
+    <script src="sidebar.js"></script>
+</body>
+</html>
