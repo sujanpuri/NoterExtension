@@ -38,6 +38,9 @@ function setupEventListeners() {
         filterByCategory('all');
     });
     
+    // Delete all notes
+    document.getElementById('deleteAllBtn').addEventListener('click', deleteAllHighlights);
+    
     // Close modal on background click
     document.getElementById('quickNoteModal').addEventListener('click', function(e) {
         if (e.target === this) closeQuickNoteModal();
@@ -479,6 +482,55 @@ function deleteHighlight(id) {
             });
         });
     }
+}
+
+// Delete all highlights
+function deleteAllHighlights() {
+    chrome.storage.local.get(['highlights'], function(result) {
+        const highlights = result.highlights || [];
+        
+        if (highlights.length === 0) {
+            alert('No notes to delete!');
+            return;
+        }
+        
+        // Count notes in current filter
+        let noteCount;
+        if (currentFilter === 'all') {
+            noteCount = highlights.length;
+        } else {
+            noteCount = highlights.filter(h => 
+                h.categories && h.categories.includes(currentFilter)
+            ).length;
+        }
+        
+        if (noteCount === 0) {
+            alert('No notes in this category!');
+            return;
+        }
+        
+        const message = currentFilter === 'all' 
+            ? `Delete all ${noteCount} notes? This cannot be undone!`
+            : `Delete all ${noteCount} notes in this category? This cannot be undone!`;
+        
+        if (confirm(message)) {
+            let updatedHighlights;
+            
+            if (currentFilter === 'all') {
+                // Delete all notes
+                updatedHighlights = [];
+            } else {
+                // Delete only notes in the current category
+                updatedHighlights = highlights.filter(h => 
+                    !h.categories || !h.categories.includes(currentFilter)
+                );
+            }
+            
+            chrome.storage.local.set({ highlights: updatedHighlights }, function() {
+                loadHighlights();
+            });
+        }
+    });
 }
 
 // Navigate to highlight

@@ -99,6 +99,28 @@ body {
     border-color: #667eea;
 }
 
+.delete-all-btn {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 2px solid #ff4757;
+    background: white;
+    color: #ff4757;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    margin-left: auto;
+    font-weight: 500;
+}
+
+.delete-all-btn:hover {
+    background: #ff4757;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3);
+}
+
 .manage-categories-btn {
     background: transparent;
     border: none;
